@@ -1,0 +1,145 @@
+<div class="container personalArea settings">
+
+	<ng-include src="'app/personalArea/template/aside.html'"></ng-include>
+
+
+	<div class="col-sm-9">
+
+	    <h1> User settings </h1>
+        <div class="done" ng-if="stage == 'done'">
+            Changes successfully accepted! <i class="fa fa-check" aria-hidden="true"></i>              
+        </div>
+        <ng-include src="'app/admin/template/serverError.html'"></ng-include>
+        <div class="diffPasswords" ng-if="stage == 'diffPasswords'">
+            <i class="fa fa-times" aria-hidden="true"></i> Passwords do not match!          
+        </div>
+	    <div class="settingsFields">
+	        <form name="mainForm" novalidate>
+	        	<div class="groupInput">
+		        	<div class="row">
+		        		<div class="col-sm-3">
+	                    	<label for="firstNameInput">First name:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="text" id="firstNameInput" ng-pattern="/^[a-zA-Z]{20}$/"
+	                    		ng-model="getMyself().firstName">
+	                	</div>
+	                </div>
+	                <div class="row">
+	                	<div class="col-sm-3">
+	                    	<label for="lastNameInput">Last name:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="text" id="lastNameInput" ng-pattern="/^[a-zA-Z]{40}$/"
+	                    		ng-model="getMyself().lastName">
+	                	</div>
+	                </div>
+	                <div class="row">
+	                	<div class="col-sm-3">
+	                    	<label for="emailInput">Email:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="text" id="emailInput" ng-model="getMyself().email"
+								   ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'>
+	                	</div>
+	                </div>
+	                <div class="row">
+	                	<div class="col-sm-3">
+	                    	<label for="infoInput">Additional info:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<textarea id="infoInput" ng-model="getMyself().additionalInfo"></textarea>
+	                	</div>
+	                </div>
+		            <div class="updateButton">
+	                	<button class="btn btn-default" ng-click="prepareToEditBasicInfo()"
+	                			data-toggle="modal" data-target="#editConfirmModal">
+	                		Update basic info
+	                	</button>
+					</div>
+	            </div>
+
+	            <div class="groupInput">
+	                <div class="row">
+	                	<div class="col-sm-3">
+	                    	<label for="oldPasswordInput">Old password:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="password" id="oldPasswordInput"
+	                    		ng-model="getMyself().oldPassword">
+	                	</div>
+	                </div>
+	                <div class="row">
+	                	<div class="col-sm-3">
+	                    	<label for="newPasswordInput">New password:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="password" id="newPasswordInput" ng-model="getMyself().newPassword"
+								   ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/">
+	                	</div>
+	                </div>
+	                <div class="row">
+	                	<div class="col-sm-3">
+	                		<label for="passwordRepInput">Repeat:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="password" id="passwordRepInput"
+	                    		ng-model="getMyself().newPasswordRep">
+	                	</div>
+	                </div>
+	                <div class="updateButton">
+	                	<button class="btn btn-default" ng-click="prepareToChangePassword()"
+	                			data-toggle="modal" data-target="#editConfirmModal">
+	                		Change password
+	                	</button>
+					</div>
+	            </div>
+
+				<div class="groupInput">
+					<div class="row" ng-repeat="phone in getMyself().phones">
+	                	<div class="col-sm-3">
+	                    	<label>Phone Number:</label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                    	<input type="tel" id="phoneNumberInput"
+	                    		ng-model="phone.phoneNumber">
+	                	</div>
+	                	<button class="btn btn-default" ng-click="prepareToEditPhone(phone.objectId, getMyself().phones.indexOf(phone))"
+	                			data-toggle="modal" data-target="#editConfirmModal">
+							OK
+						</button>
+						<button class="btn btn-default"
+								ng-click="prepareToDeletePhone(phone.objectId, getMyself().phones.indexOf(phone))"
+								data-toggle="modal" data-target="#deleteConfirmModal">
+							Delete
+						</button>
+	                </div>
+	                <div class="row">
+	                	<div class="col-sm-3">
+							<button class="btn btn-default col-sm-8"
+									ng-click="prepareToAddPhone()">
+								<i class="fa fa-plus" aria-hidden="true"></i> Add one
+							</button>
+						</div>
+						<div ng-if="stage == 'addPhone'" class="newPhone">
+							<div class="col-sm-6">
+		                    	<input type="tel" ng-model="getMyself().newPhone">
+		                	</div>
+		                	<button class="btn btn-default"
+									ng-click="query()">
+								<i class="fa fa-check" aria-hidden="true"></i>
+							</button>
+							<button class="btn btn-default"
+									ng-click="cancelPhone()">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</button>
+	                	</div>
+	                </div>
+	            </div>
+	        </form>
+	    </div>
+	</div>
+</div>
+
+
+<ng-include src="'app/admin/template/confirmModalWindows.html'"></ng-include>

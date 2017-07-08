@@ -1,0 +1,255 @@
+.answer {
+    display: inline-block;
+    margin-left: 15px;
+    color: green;
+}
+
+/* ------- top of workspace ------- */
+.workspace .top h2 {
+	display: inline-block;
+	margin: 20px;
+}
+
+.workspace .top .newEntity {
+	margin-top: -15px;
+}
+
+.workspace .updateList {
+    float: right;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.workspace .radio-btn {
+    display: none;
+}
+
+.workspace h2 label {
+    font-weight: normal;
+}
+
+.workspace h2 .toggleExec i {
+    font-size: 24px;
+}
+/* --------------------------------- */
+
+
+/* -- list of objects in workspace -- */
+.workspace .listOfObjects ul.pager li a {
+	width: 100px;
+	cursor: pointer;
+}
+
+.workspace .listOfObjects ul.pager li input {
+	width: 43px;
+}
+
+.workspace .listOfObjects .block-border {
+    border: 1px solid #d1d1d1;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+.workspace .listOfObjects .top-bottom-border {
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+    padding: 10px 0px;
+}
+
+.workspace .listOfObjects .top-border {
+    border-top: 1px solid #d1d1d1;
+    padding: 10px 0px;
+}
+
+.workspace .listOfObjects .bottom-border {
+    border-bottom: 1px solid #d1d1d1;
+    padding: 10px 0px;
+}
+
+.workspace .listOfObjects .order-top-border {
+    border-top: 1px solid #d1d1d1;
+}
+
+.workspace .listOfObjects .order-bottom-border {
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.workspace .listOfObjects .order-left-border {
+    border-left: 1px solid #d1d1d1;
+}
+
+.workspace .listOfObjects .order-right-border {
+    border-right: 1px solid #d1d1d1;
+}
+
+.workspace .listOfObjects .order-padding-top-bottom {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.workspace .listOfObjects .order-padding-top {
+    padding-top: 5px;
+}
+
+.workspace .listOfObjects .order-padding-bottom {
+    padding-bottom: 5px;
+}
+
+.workspace .listOfObjects .admin-notes {
+    font-size: 18px;
+}
+
+.workspace .listButton {
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.workspace table tbody tr th {
+    font-weight: normal;
+}
+
+.workspace .deleteMaintenance {
+    font-size: 14px;
+}
+
+.workspace .toggle {
+    border-radius: 20%;
+}
+
+.workspace .markedOfDone {
+    float: left;
+}
+
+.workspace .markedOfDone i {
+    font-size: 40px;
+    color: green;
+}
+/* ---------------------------------- */
+
+/* ----- Form for add or update ----- */
+.editWindow .back {
+    margin: 15px 0;
+    border-radius: 15px;
+}
+
+.editWindow h3 {
+    margin: 15px 0;
+}
+
+.editWindow .createUpdateForm {
+    border: 1px solid #d1d1d1;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.editWindow .createUpdateForm .wrapInput {
+    margin-top: 4px;
+}
+
+.editWindow .createUpdateForm .wrapInput .field {
+    width: 100%;
+}
+
+.editWindow .createUpdateForm .currencyDlr {
+    width: 50%;
+    text-align: right;
+}
+
+.editWindow .createUpdateForm .currencyCent {
+    text-align: right;
+    width: 30%;
+}
+
+.editWindow .createUpdateForm #roomNmbr {
+    width: 70px;
+}
+
+.editWindow .createUpdateForm .title {
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.editWindow .createUpdateForm .myLabel {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.editWindow .createUpdateForm .form-field-top-border {
+    border-top: 1px solid #d1d1d1;
+}
+
+.editWindow .createUpdateForm .form-field-bottom-border {
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.editWindow .createUpdateForm .form-field-margin-bottom {
+    margin-bottom: 10px;
+}
+
+.editWindow .groupInput {
+    margin-bottom: 30px;
+}
+
+.editWindow .phoneButtonGroup {
+    padding-top: 5px;
+}
+/* ---------------------------------- */
+
+
+/* --------- Modal windows --------- */
+.modal .vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+.modal .vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events: none;
+}
+.modal .modal-content {
+    width: inherit;
+    height: inherit;
+    margin: 0 auto;
+    pointer-events: all;
+}
+/* --------------------------------- */
+
+.statistic .thanking p {
+    margin: 50px 0 30px 0;
+}
+
+/* ----- Для панель фильтров ----- */
+.filter-panel {
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    background: white;
+
+    position: fixed;
+    right: 10px;
+    top: 61px;
+}
+
+.filter-panel h4 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.filter-panel .radio-pay {
+    display: none;
+}
+/* ------------------------------- */
+
+
+
+
+

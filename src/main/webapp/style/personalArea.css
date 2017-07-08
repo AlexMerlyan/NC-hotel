@@ -1,0 +1,116 @@
+/* ------------ aside ------------- */
+.personalArea aside .profilePhoto {
+	background-image: url("../res/img/user_photo.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 255px;
+}
+
+.personalArea aside .name {
+	text-align: center;
+	font-size: 24px;
+	font-family: 'Times New Roman';
+	text-shadow: #444 1px 1px 3px;
+}
+/* ------------------------------- */
+
+/* --------- Настройки ------------- */
+.personalArea h1 {
+	text-align: center;
+	margin: 20px;
+}
+
+.personalArea .done {
+	color: green;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.settings .diffPasswords {
+	color: red;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.settings .settingsFields {
+	font-size: 18px;
+}
+
+.settings .settingsFields form .groupInput {
+	margin-bottom: 30px;
+}
+
+.settings .settingsFields form input, .settings textarea {
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #999;
+	width: 100%;
+	text-align: center;
+}
+
+.settings textarea {
+	resize: none;
+	height: 80px;
+	text-align: justify;
+}
+
+.settings .settingsFields form input:focus, .settings textarea:focus {
+	border-bottom: 1px solid #555;
+	background: #efefef;
+}
+
+.settings .settingsFields form .row {
+	margin-bottom: 10px;
+}
+
+.settings .settingsFields form .updateButton {
+	text-align: center;
+}
+
+.settings .settingsFields form .updateButton button {
+	width: 200px;
+}
+
+.settings .settingsFields .newPhone button {
+	width: 58px;
+}
+
+.messageToAdmin textarea {
+	resize: none;
+	height: 150px;
+}
+
+.messageToAdmin .send {
+	text-align: center;
+}
+
+.personalArea .comment {
+	padding-top: 10px;
+}
+
+.personalArea .comment .info {
+	cursor: pointer;
+}
+
+textarea {
+	resize: none;
+}
+
+.personalArea .comment .edit button {
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------- */

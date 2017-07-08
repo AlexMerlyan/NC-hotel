@@ -1,0 +1,239 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="toMain"><a href="http://localhost:8080/index.html"><i class="fa fa-home" aria-hidden="true"></i> NC Hotel</a></div>
+
+            <ul class="nav navbar-nav navbar-right" ng-if="!auth.isAuthorized">
+                <li><a role="button" id="loginLink" ng-click="hideFailMessage()" data-toggle="modal" data-target="#loginModal">Log in</a></li>
+                <li><a role="button" id="signupLink" data-toggle="modal" data-target="#creationModal">Sign up</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right" id="profile-head" ng-if="auth.isAuthorized">
+                <li class="dropdown">
+                    <div class="dropdown-toggle" data-toggle="dropdown">
+                        <div class="face">
+                            <img src="res/img/user_photo.jpg" class="img-circle">
+                            <p>{{ auth.myself.firstName }}</p>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="profile-picture">
+                                            <img src="res/img/user_photo.jpg" class="img-circle">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left">{{ auth.myself.firstName }} {{ auth.myself.lastName }}</p>
+                                        <p class="text-left small">{{ auth.myself.email }}</p>
+                                        <p class="text-left">
+                                            <a href="#/personal/settings" class="btn btn-primary btn-block btn-sm">Personal settings</a>
+                                            <a href="#/admin/notifications" class="btn btn-primary btn-block btn-sm"
+                                                    ng-if="auth.isAdmin || auth.isReception">
+                                                Admin desktop
+                                            </a>
+                                            <a data-toggle="modal" data-target="#statisticConfirmation" class="btn btn-primary btn-block btn-sm" 
+                                                    ng-if="auth.isAdmin || auth.isReception">
+                                                Get room statistic on email
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="btn btn-danger btn-block" ng-click="logout()"> Log out </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- Login -->
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header popupheader">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <form id="authorizeform" class="form-inline" novalidate>
+                <div>  
+                    <label for="loginform" class="col-sm-4">Email:</label>
+                    <input type="text" id="loginform" ng-model="auth.incoming.login" class="form-control input-sm col-sm-8"
+                           ng-change="hideFailAuthMessage()" placeholder="Enter login"
+                           ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'>
+                </div>
+                <div>
+                    <label for="passform" class="col-sm-4 top-mrgn bottom-mrgn">Password:</label>
+                    <input type="password" id="passform" ng-model="auth.incoming.password"
+                           class="form-control input-sm col-sm-8 top-mrgn bottom-mrgn"
+                           ng-change="hideFailAuthMessage()" placeholder="Enter password">
+                </div>
+                <p class="resetPassword" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal">
+                    Reset the password
+                </p>
+                <div ng-if="auth.incoming.failed" class="failedAuth">
+                    Email or password is incorrect.
+                </div>
+                <div class="formFooter">
+                    <button type="submit" class="btn btn-success" ng-disabled="authorizeform.$invalid" ng-click='login()'>Login</button>
+                    <button type="button" id="loginFormClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Reset password -->
+<div class="modal fade" id="resetPasswordModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header popupheader">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reset the password</h4>
+            </div>
+            <form id="authorizeform" class="form-inline" novalidate>
+                <div>  
+                    <label for="resetEmail" class="col-sm-4 bottom-mrgn">Email:</label>
+                    <input type="email" id="resetEmail" class="form-control input-sm col-sm-8 bottom-mrgn"
+                           ng-model="auth.resetEmail" ng-required="true" placeholder="Enter your email">
+                </div>
+                <div class="formFooter">
+                    <button class="btn btn-success" ng-disabled="authorizeform.$invalid" data-dismiss="modal" ng-click='resetPassword()'>Reset</button>
+                    <button type="button" id="loginFormClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Registration -->
+<div class="modal fade" id="creationModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content windowRegistration">
+            <div class="modal-header popupheader">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Register</h4>
+            </div>
+            <form novalidate id="registrationForm" name="registrationForm" class="form-inline">
+                <div ng-class="{ 'has-error' : registrationForm.email.$invalid && !registrationForm.email.$pristine }">
+                    <label for="logincform" class="emailLabel col-sm-4">Email:</label>
+                    <input type="text" id="logincform" placeholder="Enter email" name="email" class="form-control input-sm col-sm-8"
+                           ng-model="registrationData.userEmail"
+                           ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+                           ng-required="true">
+                    <p ng-show="registrationForm.email.$invalid && !registrationForm.email.$pristine"
+                       class="help-block col-sm-offset-4">Enter a valid email.</p>
+                </div>
+                <div ng-class="{ 'has-error' : registrationForm.password.$invalid && !registrationForm.password.$pristine }">
+                    <label for="passcform" class="passwordLabel col-sm-4 top-mrgn">Password:</label>
+                    <input type="password" id="passcform" placeholder="Enter password" name="password"
+                           class="form-control input-sm col-sm-8 top-mrgn"
+                           ng-model="registrationData.userPassword" ng-required="true"
+                           ng-change="hideNotTheSamePasswordsMessage()"
+                           ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/">
+                    <p ng-show="registrationForm.password.$invalid && !registrationForm.password.$pristine"
+                       class="help-block col-sm-offset-4">Enter a valid password.</p>
+                </div>
+                <div ng-class="{ 'has-error' : registrationForm.passwordConfirm.$invalid && !registrationForm.passwordConfirm.$pristine }">
+                    <label for="passcrform" class="passwordLabel col-sm-4 top-mrgn">Repeat:</label>
+                    <input type="password" id="passcrform" placeholder="Password confirmation" name="passwordConfirm"
+                           class="form-control input-sm col-sm-8 top-mrgn"
+                           ng-model="registrationData.userPasswordRepeat" ng-required="true"
+                           ng-change="hideNotTheSamePasswordsMessage()">
+                    <p ng-show="registrationForm.passwordConfirm.$invalid && !registrationForm.passwordConfirm.$pristine"
+                       class="help-block col-sm-offset-4">Repeat your password.</p>
+                </div>
+                <div ng-class="{ 'has-error' : registrationForm.name.$invalid && !registrationForm.name.$pristine }">
+                    <label for="nameform" class="col-sm-4 top-mrgn">Name:</label>
+                    <input type="text" id="nameform" placeholder="Enter your name" name="name"
+                           class="form-control input-sm col-sm-8 top-mrgn"
+                           ng-model="registrationData.userName" ng-required="true">
+                    <p ng-show="registrationForm.name.$invalid && !registrationForm.name.$pristine"
+                       class="help-block col-sm-offset-4">You name is required.</p>
+                </div>
+                <div ng-class="{ 'has-error' : registrationForm.surname.$invalid && !registrationForm.surname.$pristine }">
+                    <label for="surnameform" class="col-sm-4 top-mrgn">Surname:</label>
+                    <input type="text" id="surnameform" placeholder="Enter your surname" name="surname"
+                           class="form-control input-sm col-sm-8 top-mrgn"
+                           ng-model="registrationData.userSurname" ng-required="true">
+                    <p ng-show="registrationForm.surname.$invalid && !registrationForm.surname.$pristine"
+                       class="help-block col-sm-offset-4">You surname is required.</p>
+                </div>
+                <div ng-class="{ 'has-error' : registrationForm.phone.$invalid && !registrationForm.phone.$pristine }">
+                    <label for="teleform" class="col-sm-4 top-mrgn bottom-mrgn">Phone:</label>
+                    <input type="text" id="teleform" placeholder="Enter your phone" name="phone"
+                           class="form-control input-sm col-sm-8 top-mrgn bottom-mrgn"
+                           ng-model="registrationData.userPhone" ng-required="true"
+                           ng-pattern="/^\+\d{1,2}\(\d{3}\)\d{2}\-\d{2}\-\d{3}$|^\+\d{12}$|^\d{7}$|^[0]\d{9}$/">
+                    <p ng-show="registrationForm.phone.$invalid && !registrationForm.phone.$pristine"
+                       class="help-block col-sm-offset-4">Enter a valid phone number.</p>
+                </div>
+                <div class="description">
+                    <p class="phoneExample">
+                        e.g. +123456789012 or&nbsp;0501234567 or&nbsp;1234567 or&nbsp;+1(000)12-34-567
+                    </p>
+                    <p class="passwordDesc">
+                        Password should be at least 8 characters. And should consist with minimum 1 upper case letter, letters and digits.
+                    </p>
+                    <p class="passwordsNotTheSame" ng-if="registrationData.passwordsNotTheSame">
+                        Passwords do not match!
+                    </p>
+                </div>
+                <div class="modal-footer, formFooter">
+                    <button class="btn btn-success" ng-click="registration()"
+                            ng-disabled="registrationForm.$invalid">
+                            <!-- registrationForm.$invalid || !email.$valid || !password.$valid || !phone.$valid -->
+                        Register
+                    </button>
+                    <button class="btn btn-danger" id="registrationFormClose" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Get statistic confirmation -->
+<div class="modal fade" id="statisticConfirmation" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-sm vertical-align-center">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header popupheader">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Statistic</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="admin-notes">Do you really want to get statistics on the your email?</p>
+                    <div class="text-right">
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="getStatistic()">Yes</button>
+                        <button class="btn btn-primary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

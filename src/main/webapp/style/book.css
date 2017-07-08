@@ -1,0 +1,132 @@
+.err {
+  text-align: center;
+  color: red;
+}
+
+.book .bg-image, .statistic .bg-image {
+  background: url('../res/img/background.jpg') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.book .jumbotron, .statistic .jumbotron {
+  margin: -10px auto 0;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+  padding: 70px 30px;
+}
+
+.book #noteForNotAuth, .statistic #noteForNotAuth {
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Times New Roman';
+  text-shadow: #444 1px 1px 3px;
+}
+
+.book .img-thumbnail, .statistic .img-thumbnail{
+    max-height: 250px;
+    max-width: 500px;
+    min-height: 250px;
+    min-width: 500px;
+    overflow: hidden;
+}
+
+.thumbnail {
+    max-height: 45px;
+    max-width: 90px;
+    min-height: 45px;
+    min-width: 70px;
+}
+
+.big-thumbnail {
+    min-width: 345px;
+    min-height: 200px;
+    max-height: 200px;
+    max-width: 345px;
+    overflow: hidden;
+}
+
+.book h2 {
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.book h3 {
+    font-size: 30px;
+}
+
+.book .cost h3 {
+    margin: 10px 0 0 0;
+}
+
+.book .cost .firstPar {
+    margin: 0;
+}
+
+.book .cost p {
+  margin: 0;
+}
+
+.book .cost button {
+  margin-top: 10px;
+}
+
+.book .search {
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+.book .my-border {
+    border: 1px solid #dfdfdf;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.book .media-body {
+    padding: 15px;
+}
+
+.book .price {
+    font-size: 30px;
+}
+
+.book .row-content {
+    padding: 40px 0 30px 0;
+}
+
+.book .order-confirm {
+    font-family: 'Old Standard TT', sans-serif;
+    font-size: 18px;
+    padding-left: 25px;
+}
+
+.book .row-footer {
+  margin: 0px auto;
+  padding: 20px 0px;
+  background-color: #AfAfAf;
+}
+
+.book .fineBooked {
+  text-align: center;
+  padding: 15px;
+}
+
+.book .fineBooked p {
+  margin-bottom: 10px;
+}
+
+.thanking {
+  text-align: center;
+}
+
+.thanking p {
+  font-family: 'Times New Roman';
+  font-size: 28px;
+  text-shadow: #444 1px 1px 3px;
+}
+
+.thanking button {
+  width: 100px;
+}
